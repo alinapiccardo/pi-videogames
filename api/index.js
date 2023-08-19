@@ -17,12 +17,14 @@
 //     =====`-.____`.___ \_____/___.-`___.-'=====
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-const server = require('./src/app.js');
-const { conn } = require('./src/db.js');
+const server = require("./src/app.js");
+const { conn } = require("./src/db.js");
 
 // Syncing all the models at once.
+// force: true para que cada vez que sincronizamos se hace un DROP de la tabla y se vuelve a crear con lo agregado
+// alter: true para que cada vez que se sincronice se actualice la tabla y no haga un DROP
 conn.sync({ force: true }).then(() => {
-  server.listen(3001, () => {
-    console.log('%s listening at 3001'); // eslint-disable-line no-console
-  });
+	server.listen(3001, () => {
+		console.log("%s listening at 3001"); // eslint-disable-line no-console
+	});
 });
