@@ -3,11 +3,12 @@ const videogamesRouter = Router();
 const {
 	getVideogamesHandler,
 	getVideogamesByIdHandler,
-	//searchVideogamesByNameHandler,
+	createVideogamesHandler,
 } = require("../handlers/videogamesHandler");
+const validatePosts = require("../middlewares/videogamesPostValidate");
 
 videogamesRouter.get("/", getVideogamesHandler);
 videogamesRouter.get("/:id", getVideogamesByIdHandler);
-//videogamesRouter.get("/name", searchVideogamesByNameHandler);
+videogamesRouter.post("/", validatePosts, createVideogamesHandler);
 
 module.exports = videogamesRouter;
