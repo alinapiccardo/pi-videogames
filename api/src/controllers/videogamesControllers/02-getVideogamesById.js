@@ -5,7 +5,7 @@ Tiene que incluir los datos del género del videojuego al que está asociado.
 Debe funcionar tanto para los videojuegos de la API como para los de la base de datos. */
 const axios = require("axios");
 require("dotenv").config();
-const { Videogame, Genre } = require("../db.js");
+const { Videogame, Genre } = require("../../db.js");
 const { API_KEY } = process.env;
 
 const getVideogamesById = async (id, source) => {

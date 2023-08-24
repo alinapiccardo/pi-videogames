@@ -3,7 +3,7 @@ Obtiene un arreglo de objetos, donde cada objeto es un videojuego con su informa
 
 const axios = require("axios");
 require("dotenv").config();
-const { Videogame, Genre } = require("../db.js");
+const { Videogame, Genre } = require("../../db.js");
 const { API_KEY } = process.env;
 
 const getApiVideogames = async () => {

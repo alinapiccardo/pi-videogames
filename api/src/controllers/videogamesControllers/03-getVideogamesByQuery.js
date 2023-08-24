@@ -7,7 +7,7 @@ Debe buscar tanto los de la API como los de la base de datos.
 */
 const axios = require("axios");
 require("dotenv").config();
-const { Videogame, Genre } = require("../db.js");
+const { Videogame, Genre } = require("../../db.js");
 const { API_KEY } = process.env;
 const { Op } = require("sequelize");
 

@@ -1,11 +1,17 @@
 //aca importar los controllers ya hechos, y hacer las funciones handlers de cada peticion, con async await + try catch
 
-const { getAllVideogames } = require("../controllers/01-getAllVideogames");
-const { getVideogamesById } = require("../controllers/02-getVideogamesById");
+const {
+	getAllVideogames,
+} = require("../controllers/videogamesControllers/01-getAllVideogames");
+const {
+	getVideogamesById,
+} = require("../controllers/videogamesControllers/02-getVideogamesById");
 const {
 	searchVideogamesByName,
-} = require("../controllers/03-getVideogamesByQuery");
-const { createVideogame } = require("../controllers/04-createVideogame");
+} = require("../controllers/videogamesControllers/03-getVideogamesByQuery");
+const {
+	createVideogame,
+} = require("../controllers/videogamesControllers/04-createVideogame");
 
 const getVideogamesByIdHandler = async (req, res) => {
 	const { id } = req.params;
