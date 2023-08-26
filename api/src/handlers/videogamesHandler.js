@@ -50,7 +50,7 @@ const createVideogamesHandler = async (req, res) => {
 			image,
 			releaseDate,
 			rating,
-			//genres: genres,
+			genres: genres,
 			created: true,
 		});
 		res.status(201).json(newVideogame);

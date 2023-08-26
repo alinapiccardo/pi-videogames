@@ -14,6 +14,7 @@ const createVideogame = async ({
 	image,
 	releaseDate,
 	rating,
+	genreIds,
 }) => {
 	const newVideogame = await Videogame.create({
 		name,
@@ -22,9 +23,24 @@ const createVideogame = async ({
 		image,
 		releaseDate,
 		rating,
+		genreIds,
 		created: true,
 	});
-	return newVideogame;
+	if (genreIds && genreIds.length > 0) {
+		const genres = await Genre.findAll({
+			where: {
+				id: genreIds,
+			},
+		});
+
+		await newVideogame.addGenres(genres);
+	}
+	const updatedVideogame = await newVideogame.reload({
+		include: Genre, // Reload the video game with associated genres
+	});
+
+	console.log(updatedVideogame);
+	return updatedVideogame;
 };
 
 module.exports = { createVideogame };

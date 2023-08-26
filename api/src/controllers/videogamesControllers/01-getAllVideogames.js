@@ -16,18 +16,23 @@ const getApiVideogames = async () => {
 
 	const pageResponses = await Promise.all(pagePromises);
 
+	//? hacer una funcion aparte para poder usarla en getByQuery
 	const formattedVideogames = pageResponses.flatMap((response) => {
 		return response.data.results.map((game) => {
-			//const platforms = game.platforms.map((g) => g.platform);
-
 			return {
 				id: game.id,
 				name: game.name,
 				image: game.background_image,
-				//genres: game.genres,
-				//platforms: platforms,
-				//rating: game.rating,
-				//released: game.released,
+				genres: game.genres.map((genre) => ({
+					id: genre.id,
+					name: genre.name,
+				})),
+				platforms: game.platforms.map((platform) => ({
+					id: platform.platform.id,
+					name: platform.platform.name,
+				})),
+				rating: game.rating,
+				released: game.released,
 				created: false,
 			};
 		});

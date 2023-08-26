@@ -20,10 +20,16 @@ const searchVideogamesByName = async (videogameName) => {
 		id: game.id,
 		name: game.name,
 		image: game.background_image,
-		//genres: game.genres,
-		//platforms: game.platforms.map((g) => g.platform),
-		//rating: game.rating,
-		//released: game.released,
+		genres: game.genres.map((genre) => ({
+			id: genre.id,
+			name: genre.name,
+		})),
+		platforms: game.platforms.map((platform) => ({
+			id: platform.platform.id,
+			name: platform.platform.name,
+		})),
+		rating: game.rating,
+		released: game.released,
 		created: false,
 	}));
 
