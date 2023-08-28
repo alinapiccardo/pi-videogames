@@ -2,16 +2,16 @@
 
 const {
 	getAllVideogames,
-} = require("../controllers/videogamesControllers/01-getAllVideogames");
+} = require("../controllers/videogamesControllers/getAllVideogames");
 const {
 	getVideogamesById,
-} = require("../controllers/videogamesControllers/02-getVideogamesById");
+} = require("../controllers/videogamesControllers/getVideogamesById");
 const {
 	searchVideogamesByName,
-} = require("../controllers/videogamesControllers/03-getVideogamesByQuery");
+} = require("../controllers/videogamesControllers/getVideogamesByQuery");
 const {
 	createVideogame,
-} = require("../controllers/videogamesControllers/04-createVideogame");
+} = require("../controllers/videogamesControllers/createVideogame");
 
 const getVideogamesByIdHandler = async (req, res) => {
 	const { id } = req.params;
@@ -50,7 +50,7 @@ const createVideogamesHandler = async (req, res) => {
 			image,
 			releaseDate,
 			rating,
-			genres: genres,
+			genreIds: genres,
 			created: true,
 		});
 		res.status(201).json(newVideogame);

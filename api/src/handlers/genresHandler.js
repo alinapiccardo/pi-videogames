@@ -1,7 +1,7 @@
 const { Genre } = require("../db");
 const {
 	getAllFetchedGenres,
-} = require("../controllers/genresControllers/01-getAllGenres");
+} = require("../controllers/genresControllers/getAllGenres");
 
 const getAllGenresHandler = async (req, res) => {
 	try {

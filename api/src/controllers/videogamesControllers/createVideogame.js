@@ -4,7 +4,6 @@ Esta ruta recibirá todos los datos necesarios para crear un videojuego y relaci
 Toda la información debe ser recibida por body.
 Debe crear un videojuego en la base de datos, y este debe estar relacionado con sus géneros indicados (al menos uno).
 */
-
 const { Videogame, Genre } = require("../../db.js");
 
 const createVideogame = async ({
@@ -36,10 +35,9 @@ const createVideogame = async ({
 		await newVideogame.addGenres(genres);
 	}
 	const updatedVideogame = await newVideogame.reload({
-		include: Genre, // Reload the video game with associated genres
+		include: Genre,
 	});
 
-	console.log(updatedVideogame);
 	return updatedVideogame;
 };
 
