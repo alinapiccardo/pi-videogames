@@ -9,11 +9,17 @@ const { Videogame, Genre } = require("../../db.js");
 const { API_KEY } = process.env;
 
 const getVideogamesById = async (id, source) => {
-	const videogame =
-		source === "api"
-			? (await axios.get(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`))
-					.data
-			: await Videogame.findByPk(id);
+	let videogame;
+	if (source === "api") {
+		const response = await axios.get(
+			`https://api.rawg.io/api/games/${id}?key=${API_KEY}`
+		);
+		videogame = response.data;
+	} else {
+		videogame = await Videogame.findByPk(id, {
+			include: Genre,
+		});
+	}
 	return videogame;
 };
 
