@@ -1,0 +1,25 @@
+/* importar las typografias de google fonts*/
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Press+Start+2P&family=Quantico:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+/*variables para usar en toda la App*/
+:root {
+	/*COLORES*/
+	--color-primary: rgb(255, 0, 102);
+	--color-secondary: rgb(192, 67, 255);
+	--color-tertiary: rgb(82, 204, 252);
+	--color-background: rgb(39, 20, 35);
+	--color-text: rgb(255, 255, 255);
+
+	/*TIPOGRAFIAS*/
+	--font-primary: "Press Start 2P", cursive;
+	--font-secondary: "Orbitron", sans-serif;
+	--font-tertiary: "Quantico", sans-serif;
+}
+
+/*estilos para el body*/
+body {
+	margin: 0;
+	padding: 0;
+	background-color: var(--color-background);
+	color: var(--color-text);
+}

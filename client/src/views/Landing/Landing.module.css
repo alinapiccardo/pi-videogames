@@ -1,0 +1,51 @@
+@import url(../../App.css);
+
+.landingDiv {
+	background-image: url(../../assets/landingBackground.jpg);
+	background-position: top center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.content {
+	text-align: left;
+	color: white;
+	padding: 100px;
+	max-width: fit-content;
+}
+
+.title {
+	font-family: var(--font-primary);
+	font-size: 1.5rem;
+	line-height: 2rem;
+}
+
+.subtitle {
+	font-family: var(--font-secondary);
+	font-size: 4rem;
+	line-height: 4.5rem;
+	text-shadow: 0 0 10px var(--color-secondary), 0 0 10px var(--color-tertiary),
+		0 0 10px var(--color-primary);
+}
+
+.button {
+	font-family: var(--font-tertiary);
+	background-color: var(--color-primary);
+	color: white;
+	padding: 10px 50px;
+	font-size: 1rem;
+	border: none;
+	border-radius: 100px;
+	cursor: pointer;
+	transition: all 0.2s ease-in-out;
+}
+
+.button:hover {
+	border: 0.1px solid white;
+	box-shadow: 0 0 15px var(--color-secondary), 0 0 5px var(--color-tertiary),
+		0 0 5px var(--color-primary);
+}
