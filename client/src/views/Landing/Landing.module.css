@@ -2,6 +2,7 @@
 
 .landingDiv {
 	background-image: url(../../assets/landingBackground.jpg);
+	height: 100vh;
 	background-position: top center;
 	background-repeat: no-repeat;
 	background-size: cover;
