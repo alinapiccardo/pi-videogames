@@ -1,12 +1,24 @@
 //COMPONENTE DUMB (Solo presentacional)
-const Card = (props) => {
+import { Link } from "react-router-dom";
+
+const Card = ({ id, name, image, genres }) => {
 	return (
-		<div>
+		<Link to={`/detail/${id}`}>
 			<div>
-				<p>id:{props.id}</p>
-				<p>Name:{props.name}</p>
+				<div>
+					<p>id:{id}</p>
+					<p>Name:{name}</p>
+					<img src={image} alt="imagen" />
+					<p>
+						{" "}
+						Genres:
+						{genres.map((genre) => (
+							<span key={genre.id}>{genre.name}</span>
+						))}
+					</p>
+				</div>
 			</div>
-		</div>
+		</Link>
 	);
 };
 
