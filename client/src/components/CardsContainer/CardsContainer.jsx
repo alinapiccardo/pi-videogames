@@ -4,7 +4,7 @@ import Card from "../Card/Card";
 
 const CardsContainer = () => {
 	const videogames = useSelector((state) => state.videogames);
-	//console.log(videogames);
+	console.log(videogames);
 	return (
 		<div>
 			<div>
@@ -16,6 +16,10 @@ const CardsContainer = () => {
 							name={videogame.name}
 							image={videogame.image}
 							genres={videogame.genres}
+							created={videogame.created}
+							platforms={videogame.platforms}
+							rating={videogame.rating}
+							released={videogame.released}
 						/>
 					);
 				})}

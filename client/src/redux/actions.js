@@ -32,7 +32,7 @@ export const cleanDetail = () => {
 	};
 };
 
-export const getVideogameByName = (name) => {
+export const getVideogamesByName = (name) => {
 	return async (dispatch) => {
 		//verificar si el nombre no es valido
 		if (!name || name.trim() === "") {
@@ -41,7 +41,7 @@ export const getVideogameByName = (name) => {
 		try {
 			const response = await axios.get(`${URL}/videogames?name=${name}`);
 			const videogame = response.data;
-			dispatch({ type: GET_VIDEOGAME_BY_NAME, payload: videogame });
+			return dispatch({ type: GET_VIDEOGAME_BY_NAME, payload: videogame });
 		} catch (err) {
 			return err.message;
 		}

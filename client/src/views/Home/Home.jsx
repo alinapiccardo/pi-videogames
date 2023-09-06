@@ -1,7 +1,8 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getVideogames } from "../../redux/actions";
 import CardsContainer from "../../components/CardsContainer/CardsContainer";
+import SearchBar from "../../components/SearchBar/SearchBar";
 
 const Home = () => {
 	const dispatch = useDispatch();
@@ -20,6 +21,8 @@ const Home = () => {
 	return (
 		<div>
 			<h1>Home</h1>
+			<SearchBar />
+			{/*PAGINADO: <Searchbar setCurrentPage={setCurrentPage}*/}
 			<CardsContainer />
 		</div>
 	);
