@@ -20,7 +20,7 @@ module.exports = (sequelize) => {
 				allowNull: false,
 			},
 			platforms: {
-				type: DataTypes.TEXT,
+				type: DataTypes.STRING,
 				allowNull: false,
 			},
 			image: {
@@ -28,7 +28,7 @@ module.exports = (sequelize) => {
 				allowNull: false,
 			},
 			releaseDate: {
-				type: DataTypes.DATE,
+				type: DataTypes.STRING,
 				allowNull: false,
 			},
 			rating: {

@@ -52,7 +52,7 @@ const searchVideogamesByName = async (videogameName) => {
 	const allVideogames = [...dbVideogames, ...apiVideogames];
 
 	if (allVideogames.length === 0) {
-		return [{ message: "No se encontraron resultados." }];
+		throw new Error("Can't find videogames with that name");
 	}
 
 	return allVideogames;

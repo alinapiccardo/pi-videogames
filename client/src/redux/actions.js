@@ -42,16 +42,15 @@ export const cleanDetail = () => {
 
 export const getVideogamesByName = (name) => {
 	return async (dispatch) => {
-		//verificar si el nombre no es valido
-		if (!name || name.trim() === "") {
-			return;
-		}
 		try {
-			const response = await axios.get(`${URL}/videogames?name=${name}`);
-			const videogame = response.data;
-			return dispatch({ type: GET_VIDEOGAME_BY_NAME, payload: videogame });
-		} catch (err) {
-			return err.message;
+			const response = await axios.get(
+				`${URL}/videogames?videogameName=${name}`
+			);
+			const videogames = response.data;
+			dispatch({ type: GET_VIDEOGAME_BY_NAME, payload: videogames });
+		} catch (error) {
+			//console.log(error);
+			alert("Cant find videogames with that name");
 		}
 	};
 };

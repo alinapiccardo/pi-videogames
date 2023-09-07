@@ -19,7 +19,7 @@ const Home = () => {
 		dispatch(getGenres());
 		dispatch(getVideogames());
 		setIsLoading(false); //Cambia el estado cuando se completan las solicitudes
-	}, [dispatch]);
+	}, [dispatch, setIsLoading]);
 
 	const videogames = useSelector((state) => state.videogames);
 	console.log("videogames", videogames.length);

@@ -45,10 +45,12 @@ const createVideogamesHandler = async (req, res) => {
 	try {
 		const newVideogame = await createVideogame({
 			name,
-			description,
+			description: description ? description : "No description information",
 			platforms,
-			image,
-			releaseDate,
+			image: image
+				? image
+				: "https://screencraft.org/wp-content/uploads/2021/08/Write-for-Video-Games-scaled.jpg",
+			releaseDate: releaseDate ? releaseDate : "No release date information",
 			rating,
 			genreIds: genres,
 			created: true,
