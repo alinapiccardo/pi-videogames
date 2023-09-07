@@ -1,9 +1,7 @@
 //COMPONENTE SMART (Contiene la logica)
-import { useSelector } from "react-redux";
 import Card from "../Card/Card";
 
-const CardsContainer = () => {
-	const videogames = useSelector((state) => state.videogames);
+const CardsContainer = ({ videogames }) => {
 	console.log(videogames);
 	return (
 		<div>

@@ -10,6 +10,14 @@ import {
 
 const URL = "http://localhost:3001";
 
+export const getGenres = () => {
+	return async (dispatch) => {
+		const response = await axios.get(`${URL}/genres`);
+		const genres = response.data;
+		dispatch({ type: GET_GENRES, payload: genres });
+	};
+};
+
 export const getVideogames = () => {
 	return async (dispatch) => {
 		const response = await axios.get(`${URL}/videogames`);
@@ -45,13 +53,5 @@ export const getVideogamesByName = (name) => {
 		} catch (err) {
 			return err.message;
 		}
-	};
-};
-
-export const getGenres = () => {
-	return async (dispatch) => {
-		const response = await axios.get(`${URL}/genres`);
-		const genres = response.data;
-		dispatch({ type: GET_GENRES, payload: genres });
 	};
 };

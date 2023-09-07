@@ -13,6 +13,7 @@ const getAllFetchedGenres = async () => {
 	const url = `https://api.rawg.io/api/genres?key=${API_KEY}`;
 
 	const response = await axios.get(url);
+	console.log(response.status);
 	const genres = response.data.results.map((genre) => {
 		return {
 			id: genre.id,

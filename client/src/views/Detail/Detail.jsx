@@ -20,7 +20,7 @@ const Detail = () => {
 	return (
 		<div>
 			<h1>Detail</h1>
-			{videogameDetail ? (
+			{videogameDetail.name ? (
 				<div>
 					<p>id: {videogameDetail.id}</p>
 					<p>Name: {videogameDetail.name}</p>
@@ -50,7 +50,7 @@ const Detail = () => {
 					<p>Description: {videogameDetail.description_raw}</p>
 				</div>
 			) : (
-				<p>Loading..</p>
+				<p>Loading...</p>
 			)}
 		</div>
 	);
