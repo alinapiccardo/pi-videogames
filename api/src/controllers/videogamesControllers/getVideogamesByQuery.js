@@ -12,27 +12,6 @@ const { API_KEY } = process.env;
 const { Op } = require("sequelize");
 
 const searchVideogamesByName = async (videogameName) => {
-	const apiResponse = await axios.get(
-		`https://api.rawg.io/api/games?key=${API_KEY}&search=${videogameName}`
-	);
-
-	const apiVideogames = apiResponse.data.results.slice(0, 15).map((game) => ({
-		id: game.id,
-		name: game.name,
-		image: game.background_image,
-		genres: game.genres.map((genre) => ({
-			id: genre.id,
-			name: genre.name,
-		})),
-		platforms: game.platforms.map((platform) => ({
-			id: platform.platform.id,
-			name: platform.platform.name,
-		})),
-		rating: game.rating,
-		released: game.released,
-		created: false,
-	}));
-
 	const dbVideogames = await Videogame.findAll({
 		where: {
 			name: {
@@ -48,6 +27,34 @@ const searchVideogamesByName = async (videogameName) => {
 		},
 		limit: 15,
 	});
+
+	const apiResponse = await axios.get(
+		`https://api.rawg.io/api/games?key=${API_KEY}&search=${videogameName}`
+	);
+
+	const apiVideogames =
+		apiResponse.data && apiResponse.data.results
+			? apiResponse.data.results.slice(0, 15).map((game) => ({
+					id: game.id,
+					name: game.name,
+					image: game.background_image,
+					genres: game.genres
+						? game.genres.map((genre) => ({
+								id: genre.id,
+								name: genre.name,
+						  }))
+						: [], // Verificación de nulidad para géneros
+					platforms: game.platforms
+						? game.platforms.map((platform) => ({
+								id: platform.platform.id,
+								name: platform.platform.name,
+						  }))
+						: [], // Verificación de nulidad para plataformas
+					rating: game.rating,
+					released: game.released,
+					created: false,
+			  }))
+			: [];
 
 	const allVideogames = [...dbVideogames, ...apiVideogames];
 

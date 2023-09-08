@@ -2,7 +2,7 @@
 import Card from "../Card/Card";
 
 const CardsContainer = ({ videogames }) => {
-	console.log(videogames);
+	//console.log("videogames cards container", videogames);
 	return (
 		<div>
 			<div>

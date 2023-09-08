@@ -21,10 +21,18 @@ const Card = ({
 				<div>
 					{/*<p>id: {id}</p>*/}
 					<p>Name: {name}</p>
-					<img src={image} alt="imagen" />
+					<img
+						src={
+							image ||
+							"https://media.wired.com/photos/62feb60bcea7c0581e825cb0/master/w_2560%2Cc_limit/Fate-of-Game-Preservation-Games-GettyImages-1170073827.jpg"
+						}
+						alt="imagen"
+					/>
 					<p>
 						Genres:
-						{displayGenres.toString()}
+						{displayGenres.length > 0
+							? displayGenres.toString()
+							: "No Genres Specified"}
 					</p>
 				</div>
 			</div>

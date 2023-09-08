@@ -5,6 +5,7 @@ import {
 	GET_VIDEOGAME_BY_NAME,
 	GET_GENRES,
 	CREATE_GAME,
+	SET_SEARCH_QUERY,
 } from "./actions_types";
 
 const initialState = {
@@ -12,6 +13,7 @@ const initialState = {
 	allVideogames: [],
 	videogameDetail: {},
 	genres: [],
+	searchQuery: "",
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -41,6 +43,11 @@ const rootReducer = (state = initialState, action) => {
 			return {
 				...state,
 				genres: action.payload,
+			};
+		case SET_SEARCH_QUERY:
+			return {
+				...state,
+				searchQuery: action.payload,
 			};
 		default:
 			return { ...state };

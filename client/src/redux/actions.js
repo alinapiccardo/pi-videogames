@@ -6,6 +6,7 @@ import {
 	GET_VIDEOGAME_BY_NAME,
 	GET_GENRES,
 	CREATE_GAME,
+	SET_SEARCH_QUERY,
 } from "./actions_types";
 
 const URL = "http://localhost:3001";
@@ -52,5 +53,11 @@ export const getVideogamesByName = (name) => {
 			//console.log(error);
 			alert("Cant find videogames with that name");
 		}
+	};
+};
+
+export const setSearchQuery = (query) => {
+	return (dispatch) => {
+		dispatch({ type: SET_SEARCH_QUERY, payload: query });
 	};
 };

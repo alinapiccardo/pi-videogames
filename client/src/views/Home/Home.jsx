@@ -22,11 +22,12 @@ const Home = () => {
 	}, [dispatch, setIsLoading]);
 
 	const videogames = useSelector((state) => state.videogames);
-	console.log("videogames", videogames.length);
+	//console.log("videogames", videogames.length);
 
 	return (
 		<div>
 			<h1>Home</h1>
+
 			<SearchBar />
 			{videogames && videogames.length > 0 ? (
 				<CardsContainer videogames={videogames} />
