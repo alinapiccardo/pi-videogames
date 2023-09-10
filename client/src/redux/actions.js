@@ -61,3 +61,11 @@ export const setSearchQuery = (query) => {
 		dispatch({ type: SET_SEARCH_QUERY, payload: query });
 	};
 };
+
+export const createGame = (videogame) => {
+	return async (dispatch) => {
+		const response = await axios.post(`${URL}/videogames`, videogame);
+		const videogameCreated = response.data;
+		dispatch({ type: CREATE_GAME, payload: videogameCreated });
+	};
+};

@@ -12,6 +12,9 @@ const {
 const {
 	createVideogame,
 } = require("../controllers/videogamesControllers/createVideogame");
+const {
+	validateData,
+} = require("../controllers/videogamesControllers/validateData");
 
 const getVideogamesByIdHandler = async (req, res) => {
 	const { id } = req.params;
@@ -46,16 +49,15 @@ const createVideogamesHandler = async (req, res) => {
 	try {
 		const newVideogame = await createVideogame({
 			name,
-			description: description ? description : "No description information",
+			description,
 			platforms,
-			image: image
-				? image
-				: "https://screencraft.org/wp-content/uploads/2021/08/Write-for-Video-Games-scaled.jpg",
-			releaseDate: releaseDate ? releaseDate : "No release date information",
+			image,
+			releaseDate,
 			rating,
 			genreIds: genres,
 			created: true,
 		});
+		console.log(newVideogame);
 		res.status(201).json(newVideogame);
 	} catch (err) {
 		console.error(err);

@@ -33,6 +33,7 @@ const Detail = () => {
 	return (
 		<div>
 			<h1>Detail</h1>
+			{console.log(videogameDetail)}
 			{videogameDetail.name ? (
 				<div>
 					<button onClick={handleBack}>Go Back</button>
@@ -41,10 +42,13 @@ const Detail = () => {
 					</Link>
 					<p>id: {videogameDetail.id}</p>
 					<p>Name: {videogameDetail.name}</p>
+
 					<img
 						src={
-							videogameDetail.background_image ||
-							"https://media.wired.com/photos/62feb60bcea7c0581e825cb0/master/w_2560%2Cc_limit/Fate-of-Game-Preservation-Games-GettyImages-1170073827.jpg"
+							videogameDetail.image
+								? videogameDetail.image
+								: videogameDetail.background_image ||
+								  "https://media.wired.com/photos/62feb60bcea7c0581e825cb0/master/w_2560%2Cc_limit/Fate-of-Game-Preservation-Games-GettyImages-1170073827.jpg"
 						}
 						alt="imagen"
 					/>
@@ -65,7 +69,10 @@ const Detail = () => {
 					</p>
 					<p>Rating: {videogameDetail.rating || "No Rating Specified"}</p>
 					<p>
-						Released: {videogameDetail.released || "No Release Date Specified"}
+						Released:{" "}
+						{videogameDetail.releaseDate
+							? videogameDetail.releaseDate
+							: videogameDetail.released || "No Release Date Specified"}
 					</p>
 					<p>
 						Platforms:{" "}

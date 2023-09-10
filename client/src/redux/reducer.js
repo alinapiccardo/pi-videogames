@@ -4,8 +4,8 @@ import {
 	CLEAN_DETAIL,
 	GET_VIDEOGAME_BY_NAME,
 	GET_GENRES,
-	CREATE_GAME,
 	SET_SEARCH_QUERY,
+	CREATE_GAME,
 } from "./actions_types";
 
 const initialState = {
@@ -48,6 +48,10 @@ const rootReducer = (state = initialState, action) => {
 			return {
 				...state,
 				searchQuery: action.payload,
+			};
+		case CREATE_GAME:
+			return {
+				...state,
 			};
 		default:
 			return { ...state };
