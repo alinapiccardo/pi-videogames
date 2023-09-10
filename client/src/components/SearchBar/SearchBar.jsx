@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getVideogamesByName, setSearchQuery } from "../../redux/actions";
 
@@ -19,8 +19,8 @@ const SearchBar = () => {
 	const searchQuery = useSelector((state) => state.searchQuery);
 
 	const handleClearSearch = () => {
-		dispatch(setSearchQuery("")); //Limpia el término de búsqueda
-		setName("");
+		dispatch(setSearchQuery("")); //Limpia el término de búsqueda en el estado global
+		setName(""); //Limpia el estado local
 	};
 
 	return (

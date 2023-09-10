@@ -1,11 +1,16 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { getVideogameDetail, cleanDetail } from "../../redux/actions";
+import { Link, useParams, useHistory } from "react-router-dom";
+import {
+	getVideogameDetail,
+	cleanDetail,
+	setSearchQuery,
+} from "../../redux/actions";
 
 const Detail = () => {
 	const { id } = useParams();
 	const dispatch = useDispatch();
+	const history = useHistory();
 
 	useEffect(() => {
 		dispatch(getVideogameDetail(id));
@@ -15,16 +20,25 @@ const Detail = () => {
 	}, [dispatch, id]);
 
 	const videogameDetail = useSelector((state) => state.videogameDetail);
-	//console.log("detail", videogameDetail);
-	const searchQuery = useSelector((state) => state.searchQuery);
+	//const searchQuery = useSelector((state) => state.searchQuery); //? implementacion del goBack de una busqueda. Detail -> Busqueda
+
+	const handleBack = () => {
+		history.goBack();
+	};
+
+	const handleResetSearch = () => {
+		dispatch(setSearchQuery(""));
+	};
 
 	return (
 		<div>
 			<h1>Detail</h1>
-			{searchQuery && <p>Search Query: {searchQuery}</p>}
-			{console.log(videogameDetail)}
 			{videogameDetail.name ? (
 				<div>
+					<button onClick={handleBack}>Go Back</button>
+					<Link to={`/home`}>
+						<button onClick={handleResetSearch}>Home</button>
+					</Link>
 					<p>id: {videogameDetail.id}</p>
 					<p>Name: {videogameDetail.name}</p>
 					<img
@@ -35,7 +49,7 @@ const Detail = () => {
 						alt="imagen"
 					/>
 					<p>
-						Genres:
+						Genres:{" "}
 						{Array.isArray(videogameDetail.genres) &&
 						videogameDetail.genres.length > 0 ? (
 							videogameDetail.genres.map((genre, index) => (
@@ -54,7 +68,7 @@ const Detail = () => {
 						Released: {videogameDetail.released || "No Release Date Specified"}
 					</p>
 					<p>
-						Platforms:
+						Platforms:{" "}
 						{Array.isArray(videogameDetail.platforms) &&
 						videogameDetail.platforms.length > 0 ? (
 							videogameDetail.platforms.map((platform, index) => (

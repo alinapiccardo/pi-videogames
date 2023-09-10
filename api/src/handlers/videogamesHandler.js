@@ -27,7 +27,7 @@ const getVideogamesByIdHandler = async (req, res) => {
 
 const getVideogamesHandler = async (req, res) => {
 	const { videogameName } = req.query;
-	console.log("videogameName: ", videogameName);
+	console.log("Search Query: ", videogameName);
 	try {
 		const videogames = videogameName
 			? await searchVideogamesByName(videogameName)
