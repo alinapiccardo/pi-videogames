@@ -7,6 +7,11 @@ import {
 	GET_GENRES,
 	CREATE_GAME,
 	SET_SEARCH_QUERY,
+	CLEAN_FILTERS,
+	ORDER_VIDEOGAMES,
+	FILTER_BY_SOURCE,
+	FILTER_BY_GENRE,
+	DELETE_GENRES,
 } from "./actions_types";
 
 const URL = "http://localhost:3001";
@@ -67,5 +72,34 @@ export const createGame = (videogame) => {
 		const response = await axios.post(`${URL}/videogames`, videogame);
 		const videogameCreated = response.data;
 		dispatch({ type: CREATE_GAME, payload: videogameCreated });
+	};
+};
+
+export const cleanFilters = () => {
+	return (dispatch) => {
+		dispatch({ type: CLEAN_FILTERS });
+	};
+};
+
+export const orderVideogames = (order) => {
+	return {
+		type: ORDER_VIDEOGAMES,
+		payload: order,
+	};
+};
+
+export const filterBySource = (source) => {
+	return (dispatch) => {
+		dispatch({ type: FILTER_BY_SOURCE, payload: source });
+	};
+};
+
+export const filterByGenre = (genres) => {
+	return { type: FILTER_BY_GENRE, payload: genres };
+};
+
+export const deleteGenres = () => {
+	return (dispatch) => {
+		dispatch({ type: DELETE_GENRES });
 	};
 };

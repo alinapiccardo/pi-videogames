@@ -4,10 +4,16 @@ import {
 	getVideogames,
 	getGenres,
 	getVideogamesByName,
+	cleanFilters,
+	deleteGenres,
+	filterBySource,
+	filterByGenre,
+	orderVideogames,
 } from "../../redux/actions";
 import CardsContainer from "../../components/CardsContainer/CardsContainer";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import Pagination from "../../components/Pagination/Pagination";
+import Filters from "../../components/Filters/Filters";
 
 const Home = () => {
 	const dispatch = useDispatch();
@@ -15,6 +21,8 @@ const Home = () => {
 
 	const videogames = useSelector((state) => state.videogames);
 	console.log("videogames amount:", videogames.length);
+
+	const genres = useSelector((state) => state.genres);
 
 	//Obtener el termino de búsqueda actual desde el estado global
 	const searchQuery = useSelector((state) => state.searchQuery);
@@ -63,11 +71,18 @@ const Home = () => {
 	}, [searchQuery, dispatch, setIsLoading]);
 	//-----------------------------------------------------------------------------------
 
+	//Filtrado---------------------------------------------------------------------------
+	const [filter, setFilter] = useState("");
+	//-----------------------------------------------------------------------------------
+
 	return (
 		<div>
 			<h1>Home</h1>
 
 			<SearchBar />
+
+			<Filters setCurrentPage={setCurrentPage} />
+
 			<Pagination
 				currentPage={currentPage}
 				totalPages={totalPages}
