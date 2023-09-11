@@ -23,3 +23,10 @@ body {
 	background-color: var(--color-background);
 	color: var(--color-text);
 }
+
+.App {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	justify-content: center;
+}

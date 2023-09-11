@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 import {
 	cleanFilters,
-	deleteGenres,
 	filterBySource,
 	filterByGenre,
 	orderVideogames,
@@ -20,18 +19,26 @@ const Filters = ({ setCurrentPage }) => {
 		setFilter(event.target.value);
 	};
 
-	const onClose = (filter) => {
-		dispatch(deleteGenres(filter));
+	const handleFilterBySource = (event) => {
+		dispatch(filterBySource(event.target.value));
+		setCurrentPage(1);
+		setFilter(event.target.value);
 	};
 
 	return (
-		<div className={style.contFilters}>
+		<div>
 			<label>Order Videogames</label>
 			<select onChange={(event) => handleOrder(event)}>
 				<option value="all">...</option>
 				<option value="Ascending">Ascending</option>
 				<option value="Descending">Descending</option>
 				<option value="Rating">Rating</option>
+			</select>
+			<label>Created Videogames</label>
+			<select onChange={(event) => handleFilterBySource(event)}>
+				<option value="AllGames">...</option>
+				<option value="API Videogames">API Videogames</option>
+				<option value="Created Videogames">Created Videogames</option>
 			</select>
 		</div>
 	);

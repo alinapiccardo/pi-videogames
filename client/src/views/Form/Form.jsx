@@ -88,6 +88,15 @@ const Form = () => {
 		event.preventDefault();
 		dispatch(createGame(videogameData));
 		alert("Your videogame was succesfully created");
+		setVideogameData({
+			name: "",
+			image: "",
+			description: "",
+			platforms: "",
+			releaseDate: "",
+			rating: "",
+			genres: [],
+		});
 	};
 
 	return (

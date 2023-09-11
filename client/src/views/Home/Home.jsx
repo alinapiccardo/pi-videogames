@@ -4,16 +4,12 @@ import {
 	getVideogames,
 	getGenres,
 	getVideogamesByName,
-	cleanFilters,
-	deleteGenres,
-	filterBySource,
-	filterByGenre,
-	orderVideogames,
 } from "../../redux/actions";
 import CardsContainer from "../../components/CardsContainer/CardsContainer";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import Pagination from "../../components/Pagination/Pagination";
 import Filters from "../../components/Filters/Filters";
+import styles from "./Home.module.css";
 
 const Home = () => {
 	const dispatch = useDispatch();
@@ -71,18 +67,11 @@ const Home = () => {
 	}, [searchQuery, dispatch, setIsLoading]);
 	//-----------------------------------------------------------------------------------
 
-	//Filtrado---------------------------------------------------------------------------
-	const [filter, setFilter] = useState("");
-	//-----------------------------------------------------------------------------------
-
 	return (
-		<div>
-			<h1>Home</h1>
-
+		<div className={styles.homeDiv}>
+			<h1 className={styles.title}>YOUR VIDEOGAMES</h1>
 			<SearchBar />
-
 			<Filters setCurrentPage={setCurrentPage} />
-
 			<Pagination
 				currentPage={currentPage}
 				totalPages={totalPages}

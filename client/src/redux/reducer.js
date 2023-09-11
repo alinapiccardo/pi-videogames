@@ -10,7 +10,6 @@ import {
 	ORDER_VIDEOGAMES,
 	FILTER_BY_SOURCE,
 	FILTER_BY_GENRE,
-	DELETE_GENRES,
 } from "./actions_types";
 
 const initialState = {
@@ -103,21 +102,16 @@ const rootReducer = (state = initialState, action) => {
 					action.payload === "all" ? [...state.allVideogames] : orderVideogames,
 			};
 		case FILTER_BY_SOURCE:
-			const dbApiVideogames = [...state.allVideogames];
+			const videogames = [...state.allVideogames];
 			const videogamesFilter =
 				action.payload === "API Videogames"
-					? dbApiVideogames.filter(
-							(videogamegame) => videogamegame.created === false
-					  )
+					? videogames.filter((videogame) => videogame.created === false)
 					: action.payload === "Created Videogames"
-					? dbApiVideogames.filter(
-							(videogamegame) => videogamegame.created === true
-					  )
-					: dbApiVideogames;
+					? videogames.filter((videogame) => videogame.created === true)
+					: videogames;
 			return {
 				...state,
-				orderedVideogames: videogamesFilter,
-				filterInfo: action.payload === "AllGames" ? [] : [action.payload],
+				videogames: videogamesFilter,
 			};
 		case FILTER_BY_GENRE:
 			const filteredByGenre =
@@ -138,11 +132,6 @@ const rootReducer = (state = initialState, action) => {
 						: state.filterInfo.includes(action.payload)
 						? [...state.filterInfo]
 						: [...state.filterInfo, action.payload],
-			};
-		case DELETE_GENRES:
-			return {
-				...state,
-				filterInfo: action.payload,
 			};
 		default:
 			return { ...state };

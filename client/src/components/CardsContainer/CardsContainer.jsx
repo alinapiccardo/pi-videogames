@@ -1,5 +1,6 @@
 //COMPONENTE SMART (Contiene la logica)
 import Card from "../Card/Card";
+import styles from "./CardsContainer.module.css";
 
 //console.log("videogames cards container", videogames);
 const CardsContainer = ({ videogames, searchQuery }) => {
@@ -13,7 +14,7 @@ const CardsContainer = ({ videogames, searchQuery }) => {
 
 	return (
 		<div>
-			<div>
+			<div className={styles.divCards}>
 				{filteredVideogames.map((videogame) => (
 					<Card
 						key={videogame.id}
