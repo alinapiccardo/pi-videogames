@@ -1,4 +1,4 @@
-import React from "react";
+import styles from "./Pagination.module.css";
 
 const Pagination = ({ currentPage, totalPages, handlePageChange }) => {
 	//Generar los numeros de la pagina con renderPageNumbers
@@ -10,7 +10,9 @@ const Pagination = ({ currentPage, totalPages, handlePageChange }) => {
 				<button
 					key={i}
 					onClick={() => handlePageChange(i)}
-					className={i === currentPage ? "active" : ""} //La clase "active" para los botones que representan la página actual (i)
+					className={
+						i === currentPage ? `${styles.active}` : `${styles.notActive}`
+					} //La clase "active" para los botones que representan la página actual (i)
 				>
 					{i}
 				</button>
@@ -21,22 +23,21 @@ const Pagination = ({ currentPage, totalPages, handlePageChange }) => {
 	};
 
 	return (
-		<div className="pagination">
-			{/*Botón "Previous" que llama a handlePageChange para reducir currentPage. El botón está deshabilitado si currentPage = 1.*/}
+		<div className={styles.paginationDiv}>
 			<button
 				onClick={() => handlePageChange(currentPage - 1)}
 				disabled={currentPage === 1}
+				className={styles.prevAndNextBtn}
 			>
-				Previous
+				Prev
 			</button>
 			{
-				//renderPageNumbers() para renderizar los botones de página generados
-				renderPageNumbers()
+				renderPageNumbers() //Renderiza los botones de página generados
 			}
-			{/*Botón "Next" que llama a handlePageChange para aumentar currentPage. El botón está deshabilitado si currentPage = totalPages, lo que significa que no se puede avanzar más */}
 			<button
 				onClick={() => handlePageChange(currentPage + 1)}
 				disabled={currentPage === totalPages}
+				className={styles.prevAndNextBtn}
 			>
 				Next
 			</button>

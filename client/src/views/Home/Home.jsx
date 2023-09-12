@@ -69,19 +69,29 @@ const Home = () => {
 
 	return (
 		<div className={styles.homeDiv}>
-			<h1 className={styles.title}>YOUR VIDEOGAMES</h1>
-			<SearchBar />
-			<Filters setCurrentPage={setCurrentPage} />
-			<Pagination
-				currentPage={currentPage}
-				totalPages={totalPages}
-				handlePageChange={handlePageChange}
-			/>
-			{currentGames && currentGames.length > 0 ? (
-				<CardsContainer videogames={currentGames} searchQuery={searchQuery} />
-			) : (
-				<p>Loading...</p>
-			)}
+			<div className={styles.componentsDiv}>
+				<div className={styles.searchBarContainer}>
+					<SearchBar />
+				</div>
+				<div className={styles.filtersContainer}>
+					<Filters setCurrentPage={setCurrentPage} />
+				</div>
+			</div>
+			<div className={styles.paginationContainer}>
+				<h1 className={styles.title}>My videogames:</h1>
+				<Pagination
+					currentPage={currentPage}
+					totalPages={totalPages}
+					handlePageChange={handlePageChange}
+				/>
+			</div>
+			<div className={styles.cardsContainer}>
+				{currentGames && currentGames.length > 0 ? (
+					<CardsContainer videogames={currentGames} searchQuery={searchQuery} />
+				) : (
+					<p>Loading...</p>
+				)}
+			</div>
 		</div>
 	);
 };

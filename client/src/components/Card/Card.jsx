@@ -41,7 +41,7 @@ const Card = ({
 							: "No Genres Specified"}
 					</p>
 					<Link to={`/detail/${id}`}>
-						<button className={styles.button}>START</button>
+						<button className={styles.startBtn}>START</button>
 					</Link>
 				</div>
 			</div>

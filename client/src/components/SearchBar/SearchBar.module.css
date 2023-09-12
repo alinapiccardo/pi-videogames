@@ -1,0 +1,50 @@
+@import url(../../App.css);
+
+.divSearchBar {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.title {
+	font-family: var(--font-tertiary);
+	font-size: 1.7rem;
+	text-align: left;
+	text-shadow: 0 0 10px var(--color-secondary), 0 0 10px var(--color-tertiary),
+		0 0 10px var(--color-primary);
+	margin: 0;
+}
+
+.form {
+	font-family: var(--font-tertiary);
+	font-size: 1rem;
+	text-align: left;
+	line-height: 2rem;
+}
+
+.input {
+	font-family: var(--font-tertiary);
+	padding: 2px 50px 2px 5px;
+	text-align: left;
+	cursor: text;
+	border-radius: 5px;
+	border: none;
+}
+
+.searchBarBtn {
+	background-color: var(--color-secondary);
+	font-family: var(--font-secondary);
+	color: var(--color-text);
+	padding: 4px 30px;
+	margin: 0 5px;
+	border-radius: 5px;
+	border: none;
+	cursor: pointer;
+}
+
+.searchBarBtn:hover {
+	border: 0.1px solid white;
+	box-shadow: 0 0 15px var(--color-secondary), 0 0 5px var(--color-tertiary),
+		0 0 5px var(--color-primary);
+}

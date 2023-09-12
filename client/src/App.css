@@ -7,7 +7,7 @@
 	--color-primary: rgb(255, 0, 102);
 	--color-secondary: rgb(192, 67, 255);
 	--color-tertiary: rgb(82, 204, 252);
-	--color-background: rgb(39, 20, 35);
+	--color-background: rgba(30, 3, 57, 0.681);
 	--color-text: rgb(255, 255, 255);
 
 	/*TIPOGRAFIAS*/
@@ -20,12 +20,6 @@
 body {
 	margin: 0;
 	padding: 0;
-	background-image: url(./assets/landingBackground.jpg);
-	height: 100vh;
-	background-position: top center;
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-attachment: fixed;
 	color: var(--color-text);
 }
 

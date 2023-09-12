@@ -5,11 +5,11 @@ import { Link } from "react-router-dom";
 const Landing = () => {
 	return (
 		<div className={styles.landingDiv}>
+			<h1 className={styles.title}>
+				HENRY <br />
+				VIDEOGAMES
+			</h1>
 			<div className={styles.content}>
-				<h1 className={styles.title}>
-					HENRY <br />
-					VIDEOGAMES
-				</h1>
 				<h2 className={styles.subtitle}>
 					Tu sitio
 					<br /> preferido

@@ -2,6 +2,6 @@
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
-	justify-content: center;
-	margin-top: 30px;
+	justify-content: space-between;
+	padding: 15px;
 }

@@ -1,44 +1,53 @@
 @import url(../../App.css);
 
+/* desktop */
 .landingDiv {
-	background-image: url(../../assets/landingBackground.jpg);
+	background-image: url(../../assets/landingBg.svg);
 	height: 100vh;
+	width: 100%;
 	background-position: top center;
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-attachment: fixed;
 	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.content {
-	text-align: left;
-	color: white;
-	padding: 100px;
-	max-width: fit-content;
 }
 
 .title {
+	flex: 1;
+	text-align: left;
 	font-family: var(--font-primary);
-	font-size: 1.5rem;
-	line-height: 2rem;
+	font-size: 2.5rem;
+	line-height: 3.5rem;
+	padding-top: 5%;
+	padding-left: 5%;
+}
+
+.content {
+	display: flex;
+	flex: 2;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-end;
+	color: white;
+	padding-right: 10%;
 }
 
 .subtitle {
+	text-align: right;
 	font-family: var(--font-secondary);
-	font-size: 4rem;
-	line-height: 4.5rem;
+	font-size: 5rem;
+	line-height: 6rem;
 	text-shadow: 0 0 10px var(--color-secondary), 0 0 10px var(--color-tertiary),
 		0 0 10px var(--color-primary);
 }
 
 .button {
+	text-align: right;
 	font-family: var(--font-tertiary);
 	background-color: var(--color-primary);
 	color: white;
 	padding: 10px 50px;
-	font-size: 1rem;
+	font-size: 1.5rem;
 	border: none;
 	border-radius: 100px;
 	cursor: pointer;
@@ -49,4 +58,52 @@
 	border: 0.1px solid white;
 	box-shadow: 0 0 15px var(--color-secondary), 0 0 5px var(--color-tertiary),
 		0 0 5px var(--color-primary);
+}
+
+/* mobile */
+@media (max-width: 768px) {
+	.landingDiv {
+		background-image: url(../../assets/landingBg.svg);
+		background-size: cover;
+		background-position: left;
+		background-repeat: no-repeat;
+		flex-direction: column;
+		justify-content: space-around;
+		align-items: center;
+	}
+
+	.title {
+		width: 50%;
+		font-size: 1.5rem;
+		line-height: 2rem;
+		text-align: left;
+		padding: 0;
+		margin: 0;
+		margin-top: 20%;
+	}
+
+	.content {
+		width: 50%;
+		padding-right: 0;
+		align-items: flex-start;
+		text-align: left;
+		padding: 0;
+		margin: 0;
+		margin-bottom: 50%;
+	}
+
+	.subtitle {
+		font-size: 2rem;
+		line-height: 2.5rem;
+		text-align: left;
+		padding: 0;
+		margin: 0;
+		margin-bottom: 10%;
+	}
+
+	.button {
+		text-align: center;
+		padding: 10px 30px;
+		font-size: 1rem;
+	}
 }
