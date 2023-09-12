@@ -20,7 +20,12 @@
 body {
 	margin: 0;
 	padding: 0;
-	background-color: var(--color-background);
+	background-image: url(./assets/landingBackground.jpg);
+	height: 100vh;
+	background-position: top center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
 	color: var(--color-text);
 }
 

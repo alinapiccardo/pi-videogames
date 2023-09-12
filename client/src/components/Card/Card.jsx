@@ -18,30 +18,33 @@ const Card = ({
 	const displayGenres = genres.map((genre) => genre.name);
 	return (
 		<div className={styles.cardStyled}>
-			<div>
-				{/*<p>id: {id}</p>*/}
-				<p className={styles.titleName}>{name}</p>
-				<img
-					src={
-						image ||
-						"https://media.wired.com/photos/62feb60bcea7c0581e825cb0/master/w_2560%2Cc_limit/Fate-of-Game-Preservation-Games-GettyImages-1170073827.jpg"
-					}
-					className={styles.imgCard}
-					alt="imagen"
-				/>
-				<p className={styles.genresDisplay}>
-					{displayGenres.length > 0
-						? displayGenres.map((genre, index) => (
-								<div key={index} className={styles["genre-box"]}>
-									{genre}
-								</div>
-						  ))
-						: "No Genres Specified"}
-				</p>
+			<div className={styles.cardContent}>
+				<div className={styles.cardImg}>
+					<img
+						src={
+							image ||
+							"https://media.wired.com/photos/62feb60bcea7c0581e825cb0/master/w_2560%2Cc_limit/Fate-of-Game-Preservation-Games-GettyImages-1170073827.jpg"
+						}
+						className={styles.imgCard}
+						alt="imagen"
+					/>
+				</div>
+				<div className={styles.cardInfo}>
+					<p className={styles.titleName}>{name}</p>
+					<p className={styles.genresDisplay}>
+						{displayGenres.length > 0
+							? displayGenres.map((genre, index) => (
+									<div key={index} className={styles["genre-box"]}>
+										{genre}
+									</div>
+							  ))
+							: "No Genres Specified"}
+					</p>
+					<Link to={`/detail/${id}`}>
+						<button className={styles.button}>START</button>
+					</Link>
+				</div>
 			</div>
-			<Link to={`/detail/${id}`}>
-				<button className={styles.button}>Show More</button>
-			</Link>
 		</div>
 	);
 };
