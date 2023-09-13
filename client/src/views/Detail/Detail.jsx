@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams, useHistory } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {
 	getVideogameDetail,
 	cleanDetail,
@@ -10,7 +10,6 @@ import {
 const Detail = () => {
 	const { id } = useParams();
 	const dispatch = useDispatch();
-	const history = useHistory();
 
 	useEffect(() => {
 		dispatch(getVideogameDetail(id));
@@ -20,23 +19,18 @@ const Detail = () => {
 	}, [dispatch, id]);
 
 	const videogameDetail = useSelector((state) => state.videogameDetail);
-	//const searchQuery = useSelector((state) => state.searchQuery); //? implementacion del goBack de una busqueda. Detail -> Busqueda
-
-	const handleBack = () => {
-		history.goBack();
-	};
 
 	const handleResetSearch = () => {
 		dispatch(setSearchQuery(""));
 	};
 
+	//TODO: if searchQuery -> volver a la misma busqueda desde el Detail
 	return (
 		<div>
 			<h1>Detail</h1>
 			{console.log(videogameDetail)}
 			{videogameDetail.name ? (
 				<div>
-					<button onClick={handleBack}>Go Back</button>
 					<Link to={`/home`}>
 						<button onClick={handleResetSearch}>Home</button>
 					</Link>

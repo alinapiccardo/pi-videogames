@@ -9,6 +9,7 @@ import {
 	SET_SEARCH_QUERY,
 	CLEAN_FILTERS,
 	ORDER_VIDEOGAMES,
+	ORDER_BY_RATING,
 	FILTER_BY_SOURCE,
 	FILTER_BY_GENRE,
 } from "./actions_types";
@@ -46,17 +47,9 @@ export const cleanDetail = () => {
 };
 
 export const getVideogamesByName = (name) => {
-	return async (dispatch) => {
-		try {
-			const response = await axios.get(
-				`${URL}/videogames?videogameName=${name}`
-			);
-			const videogames = response.data;
-			dispatch({ type: GET_VIDEOGAME_BY_NAME, payload: videogames });
-		} catch (error) {
-			//console.log(error);
-			alert("Cant find videogames with that name");
-		}
+	return {
+		type: GET_VIDEOGAME_BY_NAME,
+		payload: name.toLowerCase(),
 	};
 };
 
@@ -87,6 +80,13 @@ export const orderVideogames = (order) => {
 	};
 };
 
+export const orderByRating = (order) => {
+	return {
+		type: ORDER_BY_RATING,
+		payload: order,
+	};
+};
+
 export const filterBySource = (source) => {
 	return {
 		type: FILTER_BY_SOURCE,
@@ -94,6 +94,6 @@ export const filterBySource = (source) => {
 	};
 };
 
-export const filterByGenre = (genres) => {
-	return { type: FILTER_BY_GENRE, payload: genres };
+export const filterByGenre = (genre) => {
+	return { type: FILTER_BY_GENRE, payload: genre };
 };

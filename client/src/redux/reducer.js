@@ -8,6 +8,7 @@ import {
 	CREATE_GAME,
 	CLEAN_FILTERS,
 	ORDER_VIDEOGAMES,
+	ORDER_BY_RATING,
 	FILTER_BY_SOURCE,
 	FILTER_BY_GENRE,
 } from "./actions_types";
@@ -18,9 +19,11 @@ const initialState = {
 	videogameDetail: {},
 	genres: [],
 	searchQuery: "",
+	filtersApplied: [],
 };
 
 const rootReducer = (state = initialState, action) => {
+	const allGames = [...state.allVideogames];
 	switch (action.type) {
 		case GET_VIDEOGAMES:
 			return {
@@ -39,9 +42,13 @@ const rootReducer = (state = initialState, action) => {
 				videogameDetail: {},
 			};
 		case GET_VIDEOGAME_BY_NAME:
+			const nameToSearch = action.payload.toLowerCase();
+			const filteredByName = state.allVideogames.filter((videogame) => {
+				return videogame.name.toLowerCase().includes(nameToSearch);
+			});
 			return {
 				...state,
-				videogames: action.payload,
+				videogames: filteredByName,
 			};
 		case GET_GENRES:
 			return {
@@ -52,6 +59,7 @@ const rootReducer = (state = initialState, action) => {
 			return {
 				...state,
 				searchQuery: action.payload,
+				videogames: action.payload,
 			};
 		case CREATE_GAME:
 			return {
@@ -61,7 +69,7 @@ const rootReducer = (state = initialState, action) => {
 			return {
 				...state,
 				videogames: state.allVideogames,
-				filterInfo: [],
+				filtersApplied: [],
 			};
 		case ORDER_VIDEOGAMES:
 			const orderVideogames = [...state.videogames];
@@ -85,8 +93,30 @@ const rootReducer = (state = initialState, action) => {
 					}
 					return 0;
 				});
-			} else if (action.payload === "Rating") {
-				orderVideogames.sort(function (a, b) {
+			}
+			return {
+				...state,
+				videogames:
+					action.payload === "all" ? [...state.allVideogames] : orderVideogames,
+				filtersApplied:
+					action.payload === "all"
+						? []
+						: [...state.filtersApplied, action.payload],
+			};
+		case ORDER_BY_RATING:
+			const orderByRating = [...state.videogames];
+			if (action.payload === "Ascending") {
+				orderByRating.sort(function (a, b) {
+					if (a.rating > b.rating) {
+						return 1;
+					}
+					if (a.rating < b.rating) {
+						return -1;
+					}
+					return 0;
+				});
+			} else if (action.payload === "Descending") {
+				orderByRating.sort(function (a, b) {
 					if (a.rating > b.rating) {
 						return -1;
 					}
@@ -99,39 +129,54 @@ const rootReducer = (state = initialState, action) => {
 			return {
 				...state,
 				videogames:
-					action.payload === "all" ? [...state.allVideogames] : orderVideogames,
+					action.payload === "all" ? [...state.allVideogames] : orderByRating,
+				filtersApplied:
+					action.payload === "all"
+						? []
+						: [...state.filtersApplied, action.payload],
 			};
 		case FILTER_BY_SOURCE:
-			const videogames = [...state.allVideogames];
-			const videogamesFilter =
-				action.payload === "API Videogames"
-					? videogames.filter((videogame) => videogame.created === false)
-					: action.payload === "Created Videogames"
-					? videogames.filter((videogame) => videogame.created === true)
-					: videogames;
+			const selectedSource = action.payload;
+			let filteredBySource = [];
+			if (selectedSource === "all") {
+				filteredBySource = [...state.allVideogames];
+			} else if (selectedSource === "API Videogames") {
+				filteredBySource = state.allVideogames.filter(
+					(videogame) => videogame.created === false
+				);
+			} else if (selectedSource === "Created Videogames") {
+				filteredBySource = state.allVideogames.filter(
+					(videogame) => videogame.created === true
+				);
+			}
 			return {
 				...state,
-				videogames: videogamesFilter,
+				videogames: filteredBySource,
+				filtersApplied:
+					selectedSource === "all"
+						? []
+						: [...state.filtersApplied, selectedSource],
 			};
 		case FILTER_BY_GENRE:
+			const orderByGenre = [...state.videogames];
+			const selectedGenre = action.payload;
 			const filteredByGenre =
-				action.payload === "All"
-					? [...state.allVideogames]
-					: state.allVideogames.filter(
+				selectedGenre === "AllGenres"
+					? allGames
+					: orderByGenre.filter(
 							(videogame) =>
-								videogame.genres &&
 								Array.isArray(videogame.genres) &&
-								videogame.genres.includes(action.payload)
+								//check if in genres there is an object with name === selectedGenre
+								videogame.genres.some((genre) => genre.name === selectedGenre)
 					  );
+
 			return {
 				...state,
 				videogames: filteredByGenre,
-				filterInfo:
-					action.payload === "Genres"
-						? [...state.filterInfo]
-						: state.filterInfo.includes(action.payload)
-						? [...state.filterInfo]
-						: [...state.filterInfo, action.payload],
+				filtersApplied:
+					action.payload === "AllGenres"
+						? []
+						: [...state.filtersApplied, action.payload],
 			};
 		default:
 			return { ...state };

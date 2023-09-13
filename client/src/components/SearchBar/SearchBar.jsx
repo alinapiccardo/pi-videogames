@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getVideogamesByName, setSearchQuery } from "../../redux/actions";
 import styles from "./SearchBar.module.css";
 
-const SearchBar = () => {
+const SearchBar = ({ handlePageChange }) => {
 	const dispatch = useDispatch();
 	const [name, setName] = useState("");
 
@@ -14,6 +14,7 @@ const SearchBar = () => {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		dispatch(getVideogamesByName(name));
+		handlePageChange(1);
 		//setName(""); no lo agrego xq quiero que quede el search query en el value para mostrar que hay una busqueda activa.
 	};
 

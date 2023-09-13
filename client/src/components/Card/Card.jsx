@@ -31,7 +31,7 @@ const Card = ({
 				</div>
 				<div className={styles.cardInfo}>
 					<p className={styles.titleName}>{name}</p>
-					<p className={styles.genresDisplay}>
+					<div className={styles.genresDisplay}>
 						{displayGenres.length > 0
 							? displayGenres.map((genre, index) => (
 									<div key={index} className={styles["genre-box"]}>
@@ -39,7 +39,8 @@ const Card = ({
 									</div>
 							  ))
 							: "No Genres Specified"}
-					</p>
+					</div>
+					<p className={styles.rating}>Rating: {rating}</p>
 					<Link to={`/detail/${id}`}>
 						<button className={styles.startBtn}>START</button>
 					</Link>
