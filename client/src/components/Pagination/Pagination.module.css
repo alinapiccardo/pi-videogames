@@ -46,3 +46,24 @@
 	border: none;
 	cursor: pointer;
 }
+
+@media screen and (max-width: 768px) {
+	.paginationDiv {
+		flex-direction: row;
+		align-items: center;
+	}
+	.prevAndNextBtn {
+		font-size: 10px;
+		padding: 5px;
+	}
+	.active {
+		font-size: 10px;
+		padding: 5px 15px;
+		margin: 3px;
+	}
+	.notActive {
+		font-size: 10px;
+		padding: 5px 15px;
+		margin: 3px;
+	}
+}

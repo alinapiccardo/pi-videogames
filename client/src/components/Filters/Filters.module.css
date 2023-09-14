@@ -25,3 +25,21 @@
 	color: rgba(37, 5, 49, 0.651);
 	cursor: pointer;
 }
+
+@media screen and (max-width: 768px) {
+	.divFilters {
+		width: 100%;
+	}
+	.labels {
+		font-size: 0.5rem;
+		line-height: 1rem;
+		margin-left: 20px;
+		margin-bottom: 10px;
+	}
+	.select {
+		height: 1rem;
+		font-size: 0.5rem;
+		width: 50%;
+		margin-left: 10px;
+	}
+}

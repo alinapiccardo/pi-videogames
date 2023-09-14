@@ -24,36 +24,6 @@
 	-webkit-backdrop-filter: blur(11.5px);
 }
 
-/* mobile */
-@media screen and (max-width: 768px) {
-	.cardContent {
-		flex-direction: column;
-	}
-
-	.cardInfo {
-		padding-left: 10px;
-		padding-bottom: 10px;
-		align-items: center;
-	}
-
-	.titleName {
-		font-size: 1rem;
-		text-align: center;
-		margin: 10px 0;
-		padding-bottom: 20px;
-	}
-
-	.genresDisplay {
-		margin-top: 10px;
-		margin-left: 0;
-		justify-content: center;
-	}
-
-	.button {
-		margin-left: 0;
-	}
-}
-
 /* tablet & desktop */
 .cardContent {
 	display: flex;
@@ -63,6 +33,7 @@
 
 .cardImg {
 	flex: 1;
+	height: 300px;
 }
 
 .cardInfo {
@@ -71,7 +42,7 @@
 	flex-direction: column;
 	align-items: flex-start;
 	padding-left: 10px;
-	justify-content: end;
+	justify-content: flex-start;
 	padding-bottom: 30px;
 }
 
@@ -82,8 +53,7 @@
 	line-height: 2rem;
 	text-decoration: none;
 	color: var(--color-text);
-	margin: 10px;
-	padding-bottom: 50px;
+	padding-left: 10px;
 }
 
 .imgCard {
@@ -92,14 +62,20 @@
 	border-bottom-right-radius: 0;
 	object-fit: cover;
 	width: 100%;
-	height: 300px;
+	height: 100%;
+}
+
+.infoDiv {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-self: flex-end;
 }
 
 .genresDisplay {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
-	justify-content: start;
 	margin-top: 10px;
 	margin-left: 10px;
 }
@@ -116,12 +92,30 @@
 	font-size: 0.7rem;
 }
 
+.rating {
+	font-size: 1.3rem;
+	font-family: var(--font-secondary);
+	color: var(--color-secondary);
+	text-shadow: 0 0 10px var(--color-secondary), 0 0 10px var(--color-tertiary),
+		0 0 5px var(--color-primary);
+	position: absolute;
+	bottom: 40px;
+	left: 50%;
+	padding-left: 15px;
+}
+
+.buttonContainer {
+	position: absolute;
+	bottom: 20px;
+	left: 50%;
+	padding-left: 15px;
+}
+
 .startBtn {
 	font-family: var(--font-secondary);
 	background-color: var(--color-secondary);
 	color: var(--color-text);
 	padding: 9px 20px;
-	margin-left: 10px;
 	font-size: 1rem;
 	border: none;
 	border-radius: 5px;
@@ -132,4 +126,60 @@
 	border: 0.1px solid white;
 	box-shadow: 0 0 15px var(--color-secondary), 0 0 5px var(--color-tertiary),
 		0 0 5px var(--color-primary);
+}
+
+/* mobile */
+@media screen and (max-width: 768px) {
+	.cardStyled {
+		width: 40%;
+		padding: 0;
+		margin: 5px;
+	}
+
+	.cardImg {
+		width: 50%;
+	}
+
+	.cardInfo {
+		width: 50%;
+		padding-left: 0;
+	}
+
+	.titleName {
+		font-size: 0.6rem;
+		line-height: 1rem;
+		padding-left: 5px;
+		margin-top: 15px;
+	}
+
+	.infoDiv {
+		margin-top: 40px;
+	}
+
+	.genresDisplay {
+		display: flex;
+		flex-direction: column;
+		width: 80%;
+		justify-content: center;
+		padding: 0;
+		margin: 10px;
+	}
+
+	.genre-box {
+		padding: 3px 5px;
+		margin-right: 3px;
+		margin-bottom: 3px;
+		font-size: 0.6rem;
+	}
+
+	.rating {
+		font-size: 1rem;
+		padding-left: 15px;
+		text-shadow: none;
+	}
+
+	.startBtn {
+		padding: 5px 10px;
+		font-size: 0.8rem;
+	}
 }

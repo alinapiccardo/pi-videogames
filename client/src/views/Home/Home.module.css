@@ -1,7 +1,7 @@
 @import url(../../App.css);
 
 body {
-	background-image: url(../../assets/otherBackgrounds/5.svg);
+	background-image: url(../../assets/otherBackgrounds/1.svg);
 	height: 100%;
 	background-position: top center;
 	background-repeat: no-repeat;
@@ -11,8 +11,6 @@ body {
 
 .homeDiv {
 	background-color: var(--color-background);
-	margin: 30px;
-	box-shadow: 10px 4px 2px rgba(0, 0, 0, 0.39);
 	text-align: center;
 	border-radius: 20px;
 	border-top-right-radius: 0px;
@@ -63,4 +61,13 @@ body {
 	font-size: 1.5rem;
 	line-height: 2rem;
 	margin-bottom: 0;
+}
+
+@media screen and (max-width: 768px) {
+	.paginationContainer {
+		align-items: flex-start;
+	}
+	.title {
+		font-size: 1.2rem;
+	}
 }

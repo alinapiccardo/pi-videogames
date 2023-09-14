@@ -1,9 +1,48 @@
+@import url(../../App.css);
+
 .navBarContainer {
 	display: flex;
-	justify-content: space-around;
 	align-items: center;
-	padding: 0 1rem;
-	border-radius: 2px;
-	background-color: #fff;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+	background-color: var(--color-background);
+	padding: 20px 0;
+}
+
+.containerLogo {
+	width: 100%;
+	display: flex;
+	justify-content: flex-start;
+	margin-left: 30px;
+}
+
+.logoNavBar {
+	font-family: var(--font-primary);
+}
+
+.containerLinks {
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+	margin-right: 40px;
+}
+
+.links {
+	font-family: var(--font-primary);
+	text-decoration: none;
+	color: var(--color-text);
+	padding: 20px 30px;
+}
+
+.createLink {
+	background-color: var(--color-secondary);
+	font-family: var(--font-primary);
+	text-decoration: none;
+	color: var(--color-text);
+	padding: 20px 30px;
+	border-radius: 50px;
+}
+
+.createLink:hover {
+	border: 0.1px solid white;
+	box-shadow: 0 0 15px var(--color-secondary), 0 0 5px var(--color-tertiary),
+		0 0 5px var(--color-primary);
 }
