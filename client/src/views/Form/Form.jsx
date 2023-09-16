@@ -41,7 +41,6 @@ const Form = () => {
 	}, [dispatch]);
 
 	const allGenres = useSelector((state) => state.genres);
-	console.log("all genres", allGenres.length);
 
 	const AddGenres = (event) => {
 		const isChecked = event.target.checked;
@@ -74,12 +73,12 @@ const Form = () => {
 	const handlePlatformChoice = (event) => {
 		setVideogameData({
 			...videogameData,
-			platforms: videogameData.platforms + event.target.value + ", ",
+			platforms: videogameData.platforms + event.target.value + " ",
 		});
 		setErrors(
 			validation({
 				...videogameData,
-				platforms: videogameData.platforms + event.target.value + ", ",
+				platforms: videogameData.platforms + event.target.value + " ",
 			})
 		);
 	};
@@ -100,108 +99,130 @@ const Form = () => {
 	};
 
 	return (
-		<div>
-			<h1>Add our own Videogame</h1>
-
-			<form onSubmit={handleSubmit}>
-				<div>
-					<label>Name: </label>
-					<input
-						type="text"
-						name="name"
-						value={videogameData.name}
-						onChange={handleInputChange}
-					/>
-					{errors.name && <p className="error">{errors.name}</p>}
-					<br />
+		<div className={styles.divForm}>
+			<h1 className={styles.title}>Add our own Videogame</h1>
+			<div className={styles.form}>
+				<form onSubmit={handleSubmit}>
 					<div>
-						<p>Choose your favorites Genres:</p>
-						{allGenres?.map((genre, index) => {
-							return (
-								<div>
-									<input
-										id={genre.id}
-										key={index}
-										type="checkbox"
-										onClick={(event) => AddGenres(event)}
-										value={genre.id}
-									/>
-									<label htmlFor={genre.id}>{genre.name}</label>
-								</div>
-							);
-						})}
-					</div>
-					{errors.genres && <p className="error">{errors.genres}</p>}
-					<br />
-					<div>
-						<label>Platforms </label>
-						<select
-							onChange={handlePlatformChoice}
-							id="platforms"
-							name="platforms"
+						<label>Name: </label>
+						<input
+							type="text"
+							name="name"
+							value={videogameData.name}
+							onChange={handleInputChange}
+						/>
+						{errors.name && <p className={styles.error}>{errors.name}</p>}
+						<br />
+						<div>
+							<p>Choose your favorites Genres:</p>
+							{allGenres?.map((genre, index) => {
+								return (
+									<div>
+										<input
+											id={genre.id}
+											key={index}
+											type="checkbox"
+											onClick={(event) => AddGenres(event)}
+											value={genre.id}
+										/>
+										<label htmlFor={genre.id}>{genre.name}</label>
+									</div>
+								);
+							})}
+						</div>
+						{errors.genres && <p className={styles.error}>{errors.genres}</p>}
+						<br />
+						<div>
+							<label>Platforms </label>
+							<select
+								onChange={handlePlatformChoice}
+								id="platforms"
+								name="platforms"
+							>
+								<option hidden name="platform">
+									Choose Platforms List
+								</option>
+								<option value="PC">PC</option>
+								<option value="macOS">macOS</option>
+								<option value="Linux">Linux</option>
+								<option value="Xbox 360">Xbox 360</option>
+								<option value="PlayStation 3">PlayStation 3</option>
+								<option value="PlayStation 4">PlayStation 4</option>
+								<option value="PlayStation 5">PlayStation 5</option>
+								<option value="Android">Android</option>
+								<option value="PS Vita">PS Vita</option>
+								<option value="Xbox One">Xbox One</option>
+								<option value="Nintendo Switch">Nintendo Switch</option>
+								<option value="iOS">iOS</option>
+								<option value="Xbox Series S/X">Xbox Series S/X</option>
+							</select>
+							<p>Chosen Platforms: {videogameData.platforms}</p>
+							{errors.platforms && (
+								<p className={styles.error}>{errors.platforms}</p>
+							)}
+						</div>
+						<label htmlFor="releaseDate">Release Date: </label>
+						<input
+							id="releaseDate"
+							type="text"
+							name="releaseDate"
+							value={videogameData.releaseDate}
+							onChange={handleInputChange}
+						/>
+						{errors.releaseDate && (
+							<p className={styles.error}>{errors.releaseDate}</p>
+						)}
+						<br />
+						<label htmlFor="rating">Rating: </label>
+						<input
+							id="rating"
+							type="text"
+							name="rating"
+							value={videogameData.rating}
+							onChange={handleInputChange}
+						/>
+						{errors.rating && <p className={styles.error}>{errors.rating}</p>}
+						<br />
+						<label htmlFor="image">Image: </label>
+						<input
+							id="image"
+							type="text"
+							name="image"
+							value={videogameData.image}
+							onChange={handleInputChange}
+						/>
+						{errors.image && <p className={styles.error}>{errors.image}</p>}{" "}
+						<br />
+						<label htmlFor="description">Description: </label>
+						<textarea
+							id="description"
+							type="text"
+							name="description"
+							value={videogameData.description}
+							onChange={handleInputChange}
+						/>
+						{errors.description && (
+							<p className={styles.error}>{errors.description}</p>
+						)}{" "}
+						<br />
+						<button
+							className={styles.subBtn}
+							type="submit"
+							disabled={
+								errors.name ||
+								errors.genres ||
+								errors.platforms ||
+								errors.releaseDate ||
+								errors.rating ||
+								errors.image ||
+								errors.description
+							}
 						>
-							<option hidden name="platform">
-								Choose Platforms List
-							</option>
-							<option value="PC">PC</option>
-							<option value="macOS">macOS</option>
-							<option value="Linux">Linux</option>
-							<option value="Xbox 360">Xbox 360</option>
-							<option value="PlayStation 3">PlayStation 3</option>
-							<option value="PlayStation 4">PlayStation 4</option>
-							<option value="PlayStation 5">PlayStation 5</option>
-							<option value="Android">Android</option>
-							<option value="PS Vita">PS Vita</option>
-							<option value="Xbox One">Xbox One</option>
-							<option value="Nintendo Switch">Nintendo Switch</option>
-							<option value="iOS">iOS</option>
-							<option value="Xbox Series S/X">Xbox Series S/X</option>
-						</select>
-						<p>Chosen Platforms: {videogameData.platforms}</p>
-						{errors.platforms && <p>{errors.platforms}</p>}
+							Create Videogame
+						</button>
 					</div>
-					<label htmlFor="releaseDate">Release Date: </label>
-					<input
-						id="releaseDate"
-						type="text"
-						name="releaseDate"
-						value={videogameData.releaseDate}
-						onChange={handleInputChange}
-					/>
-					{errors.releaseDate && <p className="error">{errors.releaseDate}</p>}
-					<br />
-					<label htmlFor="rating">Rating: </label>
-					<input
-						id="rating"
-						type="text"
-						name="rating"
-						value={videogameData.rating}
-						onChange={handleInputChange}
-					/>
-					{errors.rating && <p className="error">{errors.rating}</p>}
-					<br />
-					<label htmlFor="image">Image: </label>
-					<input
-						id="image"
-						type="text"
-						name="image"
-						value={videogameData.image}
-						onChange={handleInputChange}
-					/>
-					{errors.image && <p className="error">{errors.image}</p>} <br />
-					<label htmlFor="description">Description: </label>
-					<textarea
-						id="description"
-						type="text"
-						name="description"
-						value={videogameData.description}
-						onChange={handleInputChange}
-					/>
-					{errors.description && <p className="error">{errors.description}</p>}{" "}
-					<br />
-					<button type="submit">Create Videogame</button>
-				</div>
-			</form>
+				</form>
+			</div>
 		</div>
 	);
 };

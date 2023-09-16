@@ -15,7 +15,7 @@ const SearchBar = ({ handlePageChange }) => {
 		event.preventDefault();
 		dispatch(getVideogamesByName(name));
 		handlePageChange(1);
-		//setName(""); no lo agrego xq quiero que quede el search query en el value para mostrar que hay una busqueda activa.
+		//setName("");
 	};
 
 	const searchQuery = useSelector((state) => state.searchQuery);
@@ -40,7 +40,7 @@ const SearchBar = ({ handlePageChange }) => {
 					SEARCH
 				</button>
 				<button onClick={handleClearSearch} className={styles.searchBarBtn}>
-					RESET
+					SHOW ALL
 				</button>
 			</form>
 		</div>

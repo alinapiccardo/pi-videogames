@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getVideogamesByName } from "../../redux/actions";
+import { getVideogames, getVideogamesByName } from "../../redux/actions";
 import CardsContainer from "../../components/CardsContainer/CardsContainer";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import Pagination from "../../components/Pagination/Pagination";
@@ -39,6 +39,7 @@ const Home = ({ fetchedGenres, currentPage, setCurrentPage }) => {
 		if (searchQuery) {
 			dispatch(getVideogamesByName(searchQuery));
 		}
+		dispatch(getVideogames());
 		handlePageChange(1);
 		setIsLoading(false); //Cambia el estado cuando se completan las solicitudes
 	}, [searchQuery, dispatch, setIsLoading]);
@@ -46,10 +47,6 @@ const Home = ({ fetchedGenres, currentPage, setCurrentPage }) => {
 
 	//Show CardsContainer----------------------------------------------------------------
 	const videogamesToShow = () => {
-		//show a loading message when videogames are being fetched, show a no videogames message when videogames already fetch, and there are 0 items
-		if (!isLoading && videogames.length === 0) {
-			return <h1 className={styles.noVideogames}>No videogames found</h1>;
-		}
 		if (isLoading) {
 			return <h1 className={styles.loading}>Loading...</h1>;
 		}

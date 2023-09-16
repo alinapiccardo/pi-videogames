@@ -158,25 +158,24 @@ const rootReducer = (state = initialState, action) => {
 						: [...state.filtersApplied, selectedSource],
 			};
 		case FILTER_BY_GENRE:
-			const orderByGenre = [...state.videogames];
 			const selectedGenre = action.payload;
-			const filteredByGenre =
-				selectedGenre === "AllGenres"
-					? allGames
-					: orderByGenre.filter(
-							(videogame) =>
-								Array.isArray(videogame.genres) &&
-								//check if in genres there is an object with name === selectedGenre
-								videogame.genres.some((genre) => genre.name === selectedGenre)
-					  );
-
+			let filteredByGenre = [];
+			if (selectedGenre === "AllGenres") {
+				filteredByGenre = [...state.allVideogames];
+			} else {
+				filteredByGenre = state.allVideogames.filter(
+					(videogame) =>
+						Array.isArray(videogame.genres) &&
+						videogame.genres.some((genre) => genre.name === selectedGenre)
+				);
+			}
 			return {
 				...state,
 				videogames: filteredByGenre,
 				filtersApplied:
 					action.payload === "AllGenres"
 						? []
-						: [...state.filtersApplied, action.payload],
+						: [...state.filtersApplied, selectedGenre],
 			};
 		default:
 			return { ...state };

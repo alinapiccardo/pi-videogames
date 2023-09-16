@@ -4,8 +4,8 @@ const validation = (videogameData) => {
 	//errors.name
 	if (videogameData.name < 1) {
 		errors.name = "* Required: Insert a videogame name";
-	} else if (videogameData.name.length > 50) {
-		errors.name = "* Videogame name too long";
+	} else if (videogameData.name.length < 2 || videogameData.name.length > 15) {
+		errors.name = "* Videogame name too short / long";
 	} else {
 		errors.name = "";
 	}
